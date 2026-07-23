@@ -62,9 +62,9 @@
     }];
 
     /* ============================
-           🆕 UPDATED API CONFIG – your new Apps Script URL
+           🆕 UPDATED API CONFIG – your new working Apps Script URL
         ============================ */
-    const API_URL = 'https://script.google.com/macros/s/AKfycbwNByzK3q-vcurC9i2gaNCSfbKEwoaDDcb0W5rHB1hqCRJGQt4PPT1H_08mJAT2U1NKLg/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzLaLXLOAlAEWzyge91-dpgKWVsZEixGxQA3w82HRC1GiLUgOu8x_zMSaIbQ6f4depz8A/exec';
 
     /* ============================
            STATE
@@ -476,11 +476,10 @@
     }
 
     /* ============================
-           🆕 PRIVATE VISIT COUNTER (total + unique)
+           🆕 PRIVATE VISIT COUNTER (total + unique) – using new URL
         ============================ */
     (function() {
-        // Same URL for both GET and POST
-        const VISIT_URL = 'https://script.google.com/macros/s/AKfycbwNByzK3q-vcurC9i2gaNCSfbKEwoaDDcb0W5rHB1hqCRJGQt4PPT1H_08mJAT2U1NKLg/exec';
+        const VISIT_URL = 'https://script.google.com/macros/s/AKfycbzLaLXLOAlAEWzyge91-dpgKWVsZEixGxQA3w82HRC1GiLUgOu8x_zMSaIbQ6f4depz8A/exec';
 
         // Always increment total views
         fetch(VISIT_URL + '?action=visit', {
@@ -529,7 +528,7 @@
             }
         }
 
-        // Uses the new API_URL (supports GET)
+        // Uses the new API_URL
         fetch(API_URL, {
             method: 'GET',
             headers: { 'Accept': 'application/json' },
