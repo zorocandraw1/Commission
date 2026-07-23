@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zoro's Comms</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="comm.css" />
+</head>
+<body>
+<!-- ============================
+    NAVIGATION
+============================ -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            <img src="pfp.jpg" alt="ZoroCanDraw" class="nav-logo-img" />
+            <span id="Zo">Zo<span>ro</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="#commissions">Commissions</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#terms">Terms</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <a href="#contact" class="nav-cta">Commission Me</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+    <!-- Mobile overlay -->
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+        <a href="#commissions" class="nav-overlay-link">Commissions</a>
+        <a href="#gallery" class="nav-overlay-link">Gallery</a>
+        <a href="#terms" class="nav-overlay-link">Terms</a>
+        <a href="#faq" class="nav-overlay-link">FAQ</a>
+        <a href="#contact" class="nav-overlay-link">Contact</a>
+        <a href="#contact" class="nav-cta-mobile">Commission Me</a>
+    </div>
+
+    <!-- ============================
+    HERO
+    ============================ -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="hero-label">Digital Illustrator</span>
+                    <h1>
+                        Fanarts, Covers &amp; <span class="accent">Original Characters.</span>
+                    </h1>
+                    <p>
+                        Specializing in illustrations of original
+                        characters, fanart and  stuffs.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#commissions" class="btn-primary">View Commissions</a>
+                        <a href="#gallery" class="btn-secondary">Gallery</a>
+                    </div>
+                    <!-- <div class="hero-tagline">✦ Painterly. Expressive. Fantasy. ✦</div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+    COMMISSION
+    ============================ -->
+    <section class="commission" id="commissions">
+        <div class="container">
+            <div style="margin-bottom:48px;">
+                <span class="section-label">Commissions</span>
+                <h2 class="section-title">Choose Your <span class="highlight">Commission</span></h2>
+            </div>
+
+            <div class="commission-card" id="commissionCard">
+                <!-- Info right -->
+                <div class="commission-info" id="commissionInfo">
+                    <div>
+                        <div class="ci-header">
+                            <div class="ci-type" id="ciType">Bust</div>
+                            <h3 class="ci-title" id="ciTitle">Character Bust</h3>
+                            <div class="ci-price" id="ciPrice">$30</div>
+                        </div>
+                        <p class="ci-desc" id="ciDesc">
+                            A detailed bust portrait focusing on the character's face and upper chest.
+                            Perfect for profile pictures.
+                        </p>
+                        <ul class="ci-features" id="ciFeatures">
+                            <li>High detail rendering</li>
+                            <li>Basic background</li>
+                        </ul>
+                    </div>
+                    <div class="commission-nav">
+                        <button class="nav-btn prev" id="prevBtn" aria-label="Previous commission">‹</button>
+                        <div class="dots" id="dotsContainer"></div>
+                        <button class="nav-btn next" id="nextBtn" aria-label="Next commission">›</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+    GALLERY
+    ============================ -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="gallery-header">
+                <div>
+                    <span class="section-label">Portfolio</span>
+                    <h2 class="section-title">My <span class="highlight">Artworks</span></h2>
+                </div>
+                
+            </div>
+
+            <div class="gallery-masonry" id="galleryMasonry">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+    TERMS
+    ============================ -->
+    <section class="terms" id="terms">
+        <div class="container">
+            <span class="section-label">Policies</span>
+            <h2 class="section-title">Terms of <span class="highlight">Service</span></h2>
+            <div class="terms-grid">
+                <div class="terms-card">
+                    <h3>Payment</h3>
+                    <p>Full payment upfront. PayPal only. No refunds unless I myself cannot finish the commission for some reason.</p>
+                </div>
+                <!-- <div class="terms-card">
+                    <h3>Pricing</h3>
+                    <div class="price-list" id="pricingList">
+                        Injected by JS
+                    </div>
+                </div> -->
+                <div class="terms-card">
+                    <h3>Delivery</h3>
+                    <p>2–10 days depending on complexity and queue. You'll receive progress updates along the way.</p>
+                </div>
+                <div class="terms-card">
+                    <h3>Rights</h3>
+                    <p>I may upload artwork to portfolio and social media.</p>
+                </div>
+                <div class="terms-card">
+                    <h3>Won't Draw</h3>
+                    <ul>
+                        <li>Extreme Gore</li>
+                        <li>Mecha</li>
+                        <li>Hate Material</li>
+                    </ul>
+                </div>
+                <div class="terms-card">
+                    <h3>Will Draw</h3>
+                    <ul>
+                        <li>Fanarts</li>
+                        <li>Original Characters</li>
+                        <li>Medium Gore, NSFW</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+    FAQ
+    ============================ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:16px;">
+                <span class="section-label">Questions</span>
+                <h2 class="section-title">Frequently Asked <span class="highlight">Questions</span></h2>
+            </div>
+            <div class="faq-list" id="faqList">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+    CONTACT
+    ============================ -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-card">
+                <div class="contact-status" id="commissionStatus">● Commissions Open</div>
+                <h2>Get In Touch</h2>
+                <p>Reach out to discuss your project &amp; ask questions. DM me on Discord or Instagram.</p>
+                <div class="contact-socials">
+                    <a href="https://discord.gg/QXWBBa8Hh" aria-label="Discord"><span class="social-icon">◆</span> Discord</a>
+                    <a href="https://www.instagram.com/direct/t/17848597443255693/" aria-label="Instagram"><span class="social-icon">◈</span> Instagram</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+    FOOTER
+    ============================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-copy">
+                    &copy; 2026 ZoroCanDraw. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="comm.js"></script>
+</body>
+</html>
