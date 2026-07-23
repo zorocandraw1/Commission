@@ -62,10 +62,9 @@
     }];
 
     /* ============================
-           API CONFIG – YOUR WORKING URL
+           🆕 UPDATED API CONFIG – your new Apps Script URL (supports both GET and POST)
         ============================ */
-    const API_URL =
-        'https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRcnrdYmxcGrnZSZwm8hr3QdxyypNFIPviiozz-FxpUfPISR_Qiq8F_23Qh1lumi9xnAVKWDbWMTUk5Z_71hjJi27RPXNGufO2bGkYUc7Ndueh0_D_JCYQVvu01dLrIpP80dvEnh0MoRW2LDxzdeWbfIO2D4sjbflKiodhHnj_nIfJNNjgqx6MMdRqEEu5L0LWM0-Z_VCqkv6Lp9RrMSjmRWV9rAWZi0e407-EunU0QyQNEfa5ZnLx8_iqkF9gvEIbqjMU5boML7uIIcTA1Jo0_MUA81Q&lib=MdosLY5wwuzTTH42U0_e2ml98cIfLrhFI';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbyQKubVswdd3AZKeYk082lSvh8KgSiwMnHI--5iQqHDf7XJL4fS4fW9tA6Srh2FED6cTw/exec';
 
     /* ============================
            STATE
@@ -104,7 +103,7 @@
                       justify-content: center; 
                       min-height: 240px; 
                       padding: 30px 20px;
-                   text-align: center;
+                      text-align: center;
                       text-decoration: none;
                       cursor: pointer;
                       gap: 6px;
@@ -113,7 +112,7 @@
                       overflow: hidden;">
                 <div style="position: absolute; inset: 0; background: radial-gradient(circle at 30% 20%, rgba(105,168,255,0.08), transparent 70%); pointer-events: none;"></div>
                 <span style="font-size: 2.4rem; line-height: 1; position: relative; z-index: 1;">✦</span>
-                <span style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); position: relative; z-index: 1; letter-spacing: 0.02em;;">See More <br>
+                <span style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); position: relative; z-index: 1; letter-spacing: 0.02em;">See More <br>
                 <span style="font-size: 0.75rem; font-weight: 400; color: var(--text-primary); position: relative; z-index: 1; letter-spacing: 0.02em; opacity: 0.3;">on insta</span></span>
                 <span style="font-size: 0.8rem; color: var(--accent); margin-top: 8px; position: relative; z-index: 1; font-weight: 500;">click here →</span>
                 <span style="position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.3;"></span>
@@ -438,52 +437,60 @@
     }
 
     /* ============================
-           SMOOTH SCROLL
+           SMOOTH SCROLL (custom animation)
         ============================ */
-    /* ============================
-   SMOOTH SCROLL (guaranteed)
-============================ */
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            const target = document.querySelector(targetId);
-            if (target) {
-                e.preventDefault();
-                const offset = parseInt(getComputedStyle(document.documentElement)
-                    .getPropertyValue('--nav-height')) || 72;
-                const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset - 12;
-                const startPosition = window.scrollY;
-                const distance = targetPosition - startPosition;
-                const duration = 800; // milliseconds
-                let startTime = null;
+    function initSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const offset = parseInt(getComputedStyle(document.documentElement)
+                        .getPropertyValue('--nav-height')) || 72;
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset - 12;
+                    const startPosition = window.scrollY;
+                    const distance = targetPosition - startPosition;
+                    const duration = 800; // milliseconds
+                    let startTime = null;
 
-                function easeInOutCubic(t) {
-                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                }
-
-                function scrollAnimation(currentTime) {
-                    if (startTime === null) startTime = currentTime;
-                    const timeElapsed = currentTime - startTime;
-                    const progress = Math.min(timeElapsed / duration, 1);
-                    const easedProgress = easeInOutCubic(progress);
-                    
-                    window.scrollTo(0, startPosition + distance * easedProgress);
-                    
-                    if (timeElapsed < duration) {
-                        requestAnimationFrame(scrollAnimation);
+                    function easeInOutCubic(t) {
+                        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
                     }
-                }
 
-                requestAnimationFrame(scrollAnimation);
-            }
+                    function scrollAnimation(currentTime) {
+                        if (startTime === null) startTime = currentTime;
+                        const timeElapsed = currentTime - startTime;
+                        const progress = Math.min(timeElapsed / duration, 1);
+                        const easedProgress = easeInOutCubic(progress);
+                        window.scrollTo(0, startPosition + distance * easedProgress);
+                        if (timeElapsed < duration) {
+                            requestAnimationFrame(scrollAnimation);
+                        }
+                    }
+                    requestAnimationFrame(scrollAnimation);
+                }
+            });
         });
-    });
-}
+    }
 
     /* ============================
-           API: FETCH STATUS & PRICES
+           🆕 PRIVATE VISIT COUNTER (silent)
+        ============================ */
+    (function() {
+        // Uses the same Apps Script URL with POST to increment visits
+        const VISIT_URL = 'https://script.google.com/macros/s/AKfycbyQKubVswdd3AZKeYk082lSvh8KgSiwMnHI--5iQqHDf7XJL4fS4fW9tA6Srh2FED6cTw/exec';
+
+        // Send a silent POST request – increments cell C1 in your sheet
+        fetch(VISIT_URL + '?action=visit', {
+            method: 'POST',
+            cache: 'no-store'
+        }).catch(() => {}); // Fail silently – no error shown to user
+    })();
+
+    /* ============================
+           API: FETCH STATUS & PRICES (GET request)
         ============================ */
     function fetchCommissionData() {
         const statusEl = document.getElementById('commissionStatus');
@@ -512,6 +519,7 @@ function initSmoothScroll() {
             }
         }
 
+        // Use the new API_URL (which serves both GET and POST)
         fetch(API_URL, {
                 method: 'GET',
                 headers: { 'Accept': 'application/json' },
