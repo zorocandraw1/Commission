@@ -475,19 +475,29 @@
         });
     }
 
-    /* ============================
-           🆕 PRIVATE VISIT COUNTER (silent)
-        ============================ */
-    (function() {
-        // Uses the same Apps Script URL with POST to increment visits
-        const VISIT_URL = 'https://script.google.com/macros/s/AKfycbyQKubVswdd3AZKeYk082lSvh8KgSiwMnHI--5iQqHDf7XJL4fS4fW9tA6Srh2FED6cTw/exec';
+    // ============================
+// PRIVATE VISIT COUNTER (total + unique)
+// ============================
+(function() {
+    // Your updated Apps Script URL
+    const VISIT_URL = 'https://script.google.com/macros/s/AKfycbwNByzK3q-vcurC9i2gaNCSfbKEwoaDDcb0W5rHB1hqCRJGQt4PPT1H_08mJAT2U1NKLg/exec';
 
-        // Send a silent POST request – increments cell C1 in your sheet
-        fetch(VISIT_URL + '?action=visit', {
+    // Always increment total views
+    fetch(VISIT_URL + '?action=visit', {
+        method: 'POST',
+        cache: 'no-store'
+    }).catch(() => {});
+
+    // Increment unique views only once per browser
+    const UNIQUE_KEY = 'zorocandraw1_unique_visit';
+    if (!localStorage.getItem(UNIQUE_KEY)) {
+        fetch(VISIT_URL + '?action=visit&unique=1', {
             method: 'POST',
             cache: 'no-store'
-        }).catch(() => {}); // Fail silently – no error shown to user
-    })();
+        }).catch(() => {});
+        localStorage.setItem(UNIQUE_KEY, 'true');
+    }
+})();
 
     /* ============================
            API: FETCH STATUS & PRICES (GET request)
