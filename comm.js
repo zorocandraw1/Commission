@@ -62,9 +62,9 @@
     }];
 
     /* ============================
-           🆕 UPDATED API CONFIG – your new Apps Script URL (supports both GET and POST)
+           🆕 UPDATED API CONFIG – your new Apps Script URL
         ============================ */
-    const API_URL = 'https://script.google.com/macros/s/AKfycbyQKubVswdd3AZKeYk082lSvh8KgSiwMnHI--5iQqHDf7XJL4fS4fW9tA6Srh2FED6cTw/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbwNByzK3q-vcurC9i2gaNCSfbKEwoaDDcb0W5rHB1hqCRJGQt4PPT1H_08mJAT2U1NKLg/exec';
 
     /* ============================
            STATE
@@ -475,29 +475,29 @@
         });
     }
 
-    // ============================
-// PRIVATE VISIT COUNTER (total + unique)
-// ============================
-(function() {
-    // Your updated Apps Script URL
-    const VISIT_URL = 'https://script.google.com/macros/s/AKfycbwNByzK3q-vcurC9i2gaNCSfbKEwoaDDcb0W5rHB1hqCRJGQt4PPT1H_08mJAT2U1NKLg/exec';
+    /* ============================
+           🆕 PRIVATE VISIT COUNTER (total + unique)
+        ============================ */
+    (function() {
+        // Same URL for both GET and POST
+        const VISIT_URL = 'https://script.google.com/macros/s/AKfycbwNByzK3q-vcurC9i2gaNCSfbKEwoaDDcb0W5rHB1hqCRJGQt4PPT1H_08mJAT2U1NKLg/exec';
 
-    // Always increment total views
-    fetch(VISIT_URL + '?action=visit', {
-        method: 'POST',
-        cache: 'no-store'
-    }).catch(() => {});
-
-    // Increment unique views only once per browser
-    const UNIQUE_KEY = 'zorocandraw1_unique_visit';
-    if (!localStorage.getItem(UNIQUE_KEY)) {
-        fetch(VISIT_URL + '?action=visit&unique=1', {
+        // Always increment total views
+        fetch(VISIT_URL + '?action=visit', {
             method: 'POST',
             cache: 'no-store'
         }).catch(() => {});
-        localStorage.setItem(UNIQUE_KEY, 'true');
-    }
-})();
+
+        // Increment unique views only once per browser
+        const UNIQUE_KEY = 'zorocandraw1_unique_visit';
+        if (!localStorage.getItem(UNIQUE_KEY)) {
+            fetch(VISIT_URL + '?action=visit&unique=1', {
+                method: 'POST',
+                cache: 'no-store'
+            }).catch(() => {});
+            localStorage.setItem(UNIQUE_KEY, 'true');
+        }
+    })();
 
     /* ============================
            API: FETCH STATUS & PRICES (GET request)
@@ -529,38 +529,38 @@
             }
         }
 
-        // Use the new API_URL (which serves both GET and POST)
+        // Uses the new API_URL (supports GET)
         fetch(API_URL, {
-                method: 'GET',
-                headers: { 'Accept': 'application/json' },
-                cache: 'no-store'
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.status !== undefined && data.status !== null) {
-                    updateStatus(data.status);
-                } else {
-                    updateStatus(DEFAULT_STATUS);
-                }
-
-                if (data.prices && typeof data.prices === 'object') {
-                    updatePrices(data.prices);
-                }
-            })
-            .catch(error => {
-                console.warn('Failed to fetch commission data, using defaults.', error);
+            method: 'GET',
+            headers: { 'Accept': 'application/json' },
+            cache: 'no-store'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status !== undefined && data.status !== null) {
+                updateStatus(data.status);
+            } else {
                 updateStatus(DEFAULT_STATUS);
-                const fallbackPrices = {};
-                commissionData.forEach(c => {
-                    fallbackPrices[c.id] = parseInt(c.price.replace('$', ''), 10);
-                });
-                updatePrices(fallbackPrices);
+            }
+
+            if (data.prices && typeof data.prices === 'object') {
+                updatePrices(data.prices);
+            }
+        })
+        .catch(error => {
+            console.warn('Failed to fetch commission data, using defaults.', error);
+            updateStatus(DEFAULT_STATUS);
+            const fallbackPrices = {};
+            commissionData.forEach(c => {
+                fallbackPrices[c.id] = parseInt(c.price.replace('$', ''), 10);
             });
+            updatePrices(fallbackPrices);
+        });
     }
 
     /* ============================
